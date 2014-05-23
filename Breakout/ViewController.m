@@ -114,18 +114,23 @@
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
 {
     if (p.y >= 565.0) {
+
+        [self.collisionBehavior removeItem:self.ballView];
         self.snapBehavior.damping = 0.6;
         [self.dynamicAnimator addBehavior:self.snapBehavior];
         [UIView animateWithDuration:0.2 animations:^{
             self.instructionsLabel.alpha = 1;
-            [self setRoundedView:self.ballView toDiameter:40.0];
         }];
+
+        [self setRoundedView:self.ballView toDiameter:40.0];
 
     }
 }
 
 - (void) ballViewDidGetTapped:(id)ballView
 {
+    [self.collisionBehavior addItem:self.ballView];
+
     [UIView animateWithDuration:0.2 animations:^{
         self.instructionsLabel.alpha = 0;
         [self setRoundedView:self.ballView toDiameter:20.0];
