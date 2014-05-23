@@ -10,6 +10,7 @@
 #import "PaddleView.h"
 #import "BallView.h"
 #import "BlockView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ViewController () <UICollisionBehaviorDelegate, BallViewDelegate>
 @property (weak, nonatomic) IBOutlet PaddleView *paddleView;
@@ -31,6 +32,9 @@
 @property UISnapBehavior *snapBehavior;
 @property UIGravityBehavior *gravityBehavior;
 @property NSMutableArray *arrayOfBlocks;
+@property (strong, nonatomic) IBOutlet UILabel *instructionsLabel;
+
+@property CAEmitterLayer *myEmitter;
 @end
 
 @implementation ViewController
@@ -79,6 +83,15 @@
     self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.ballView]];
     self.gravityBehavior.magnitude = 0.0;
     [self.dynamicAnimator addBehavior:self.gravityBehavior];
+
+    self.myEmitter = (CAEmitterLayer *)self.ballView.layer;
+
+    self.snapBehavior = [[UISnapBehavior alloc] initWithItem:self.ballView snapToPoint:self.view.center];
+
+    self.paddleView.layer.cornerRadius = 10.0;
+
+    [self setRoundedView:self.ballView toDiameter:40.0];
+
 }
 
 
@@ -87,13 +100,12 @@
     if ([item1 isKindOfClass:[BallView class]] && [item2 isKindOfClass:[BlockView class]]) {
         BlockView *collidedBlock = (BlockView *)item2;
 
-        [collidedBlock removeFromSuperview];
-        [self.collisionBehavior removeItem:collidedBlock];
+        [UIView animateWithDuration:1.0 animations:^{
+            collidedBlock.backgroundColor = [UIColor whiteColor];
+            collidedBlock.alpha = 0.0;
+        }];
 
-        if ([self shouldStartAgain]) {
-            [self.dynamicAnimator addBehavior:self.snapBehavior];
-            [self reset];
-        }
+        [self performSelector:@selector(removeBlockFromSuperView:) withObject:collidedBlock afterDelay:1.0];
     }
     [self.gravityBehavior removeItem:self.ballView];
 }
@@ -102,15 +114,22 @@
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
 {
     if (p.y >= 565.0) {
-        CGPoint mainViewCenterPoint = self.view.center;
-        self.snapBehavior = [[UISnapBehavior alloc] initWithItem:self.ballView snapToPoint:mainViewCenterPoint];
+        self.snapBehavior.damping = 0.6;
         [self.dynamicAnimator addBehavior:self.snapBehavior];
+        [UIView animateWithDuration:0.2 animations:^{
+            self.instructionsLabel.alpha = 1;
+            [self setRoundedView:self.ballView toDiameter:40.0];
+        }];
 
     }
 }
 
 - (void) ballViewDidGetTapped:(id)ballView
 {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.instructionsLabel.alpha = 0;
+        [self setRoundedView:self.ballView toDiameter:20.0];
+    }];
     [self.gravityBehavior addItem:self.ballView];
     self.gravityBehavior.magnitude = 0.3;
     self.gravityBehavior.gravityDirection = CGVectorMake(0.05, 1.0);
@@ -121,7 +140,6 @@
 - (BOOL)shouldStartAgain
 {
     NSMutableArray *blocksLeftArray = [[NSMutableArray alloc] init];
-
     for (id eachSubViewItem in self.view.subviews) {
         if ([eachSubViewItem isKindOfClass:[BlockView class]]) {
             [blocksLeftArray addObject:eachSubViewItem];
@@ -142,12 +160,35 @@
 
 - (void)reset
 {
-
     for (BlockView *eachBlockView in self.arrayOfBlocks) {
+        eachBlockView.backgroundColor = [UIColor orangeColor];
         [self.view addSubview:eachBlockView];
+        [UIView animateWithDuration:0.4 animations:^{
+            eachBlockView.alpha = 1.0;
+            self.instructionsLabel.alpha = 1.0;
+            [self setRoundedView:self.ballView toDiameter:40.0];
+        }];
         [self.collisionBehavior addItem:eachBlockView];
     }
+}
 
+-(void)removeBlockFromSuperView:(BlockView *)collidedBlock{
+    [collidedBlock removeFromSuperview];
+    [self.collisionBehavior removeItem:collidedBlock];
+
+    if ([self shouldStartAgain]) {
+        [self.dynamicAnimator addBehavior:self.snapBehavior];
+        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(reset) userInfo:nil repeats:NO];
+    }
+}
+
+-(void)setRoundedView:(UIView *)roundedView toDiameter:(float)newSize;
+{
+    CGPoint saveCenter = roundedView.center;
+    CGRect newFrame = CGRectMake(roundedView.frame.origin.x, roundedView.frame.origin.y, newSize, newSize);
+    roundedView.frame = newFrame;
+    roundedView.layer.cornerRadius = newSize / 2.0;
+    roundedView.center = saveCenter;
 }
 
 @end

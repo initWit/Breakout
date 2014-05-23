@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>41FB5D8C-38CF-4586-89F2-1307E54A9485</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Breakout</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>786CCFF3-FA01-4D3A-9C5D-866BEEDF2248</key>
+		<string>https://github.com/initWit/Breakout.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Breakout.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>786CCFF3-FA01-4D3A-9C5D-866BEEDF2248</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/initWit/Breakout.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>786CCFF3-FA01-4D3A-9C5D-866BEEDF2248</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>786CCFF3-FA01-4D3A-9C5D-866BEEDF2248</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Breakout</string>
+		</dict>
+	</array>
+</dict>
+</plist>
