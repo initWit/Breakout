@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		582DAC2D192E8BDF005EFD8D /* BlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 582DAC2C192E8BDF005EFD8D /* BlockView.m */; };
 		58738BFE192E77C700D0B4AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58738BFD192E77C700D0B4AE /* Foundation.framework */; };
 		58738C00192E77C700D0B4AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58738BFF192E77C700D0B4AE /* CoreGraphics.framework */; };
 		58738C02192E77C700D0B4AE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58738C01192E77C700D0B4AE /* UIKit.framework */; };
@@ -21,6 +22,8 @@
 		58738C1F192E77C700D0B4AE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58738C01192E77C700D0B4AE /* UIKit.framework */; };
 		58738C27192E77C700D0B4AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 58738C25192E77C700D0B4AE /* InfoPlist.strings */; };
 		58738C29192E77C700D0B4AE /* BreakoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58738C28192E77C700D0B4AE /* BreakoutTests.m */; };
+		58738C36192E791600D0B4AE /* PaddleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58738C35192E791600D0B4AE /* PaddleView.m */; };
+		58738C39192E7AA200D0B4AE /* BallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58738C38192E7AA200D0B4AE /* BallView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		582DAC2B192E8BDF005EFD8D /* BlockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockView.h; sourceTree = "<group>"; };
+		582DAC2C192E8BDF005EFD8D /* BlockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockView.m; sourceTree = "<group>"; };
 		58738BFA192E77C700D0B4AE /* Breakout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Breakout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58738BFD192E77C700D0B4AE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		58738BFF192E77C700D0B4AE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +58,10 @@
 		58738C24192E77C700D0B4AE /* BreakoutTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BreakoutTests-Info.plist"; sourceTree = "<group>"; };
 		58738C26192E77C700D0B4AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		58738C28192E77C700D0B4AE /* BreakoutTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BreakoutTests.m; sourceTree = "<group>"; };
+		58738C34192E791600D0B4AE /* PaddleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddleView.h; sourceTree = "<group>"; };
+		58738C35192E791600D0B4AE /* PaddleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddleView.m; sourceTree = "<group>"; };
+		58738C37192E7AA200D0B4AE /* BallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallView.h; sourceTree = "<group>"; };
+		58738C38192E7AA200D0B4AE /* BallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +124,12 @@
 				58738C0C192E77C700D0B4AE /* AppDelegate.h */,
 				58738C0D192E77C700D0B4AE /* AppDelegate.m */,
 				58738C0F192E77C700D0B4AE /* Main.storyboard */,
+				58738C37192E7AA200D0B4AE /* BallView.h */,
+				58738C38192E7AA200D0B4AE /* BallView.m */,
+				582DAC2B192E8BDF005EFD8D /* BlockView.h */,
+				582DAC2C192E8BDF005EFD8D /* BlockView.m */,
+				58738C34192E791600D0B4AE /* PaddleView.h */,
+				58738C35192E791600D0B4AE /* PaddleView.m */,
 				58738C12192E77C700D0B4AE /* ViewController.h */,
 				58738C13192E77C700D0B4AE /* ViewController.m */,
 				58738C15192E77C700D0B4AE /* Images.xcassets */,
@@ -249,7 +264,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				582DAC2D192E8BDF005EFD8D /* BlockView.m in Sources */,
+				58738C36192E791600D0B4AE /* PaddleView.m in Sources */,
 				58738C14192E77C700D0B4AE /* ViewController.m in Sources */,
+				58738C39192E7AA200D0B4AE /* BallView.m in Sources */,
 				58738C0E192E77C700D0B4AE /* AppDelegate.m in Sources */,
 				58738C0A192E77C700D0B4AE /* main.m in Sources */,
 			);
@@ -378,6 +396,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/paul.hennig/Downloads,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Breakout/Breakout-Prefix.pch";
 				INFOPLIST_FILE = "Breakout/Breakout-Info.plist";
@@ -391,6 +413,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/paul.hennig/Downloads,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Breakout/Breakout-Prefix.pch";
 				INFOPLIST_FILE = "Breakout/Breakout-Info.plist";
@@ -460,6 +486,7 @@
 				58738C2E192E77C700D0B4AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		58738C2F192E77C700D0B4AE /* Build configuration list for PBXNativeTarget "BreakoutTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +495,7 @@
 				58738C31192E77C700D0B4AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

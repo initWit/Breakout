@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  PaddleView.h
 //  Breakout
 //
 //  Created by Timothy P. Hennig on 5/22/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface PaddleView : UIView
 
 @end
