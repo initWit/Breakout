@@ -16,6 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap Ball To Start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gX5-nd-RZ0">
+                                <rect key="frame" x="20" y="218" width="280" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="29"/>
+                                <color key="textColor" red="0.7703683035714286" green="0.7703683035714286" blue="0.7703683035714286" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nuy-sG-AM5" customClass="PaddleView">
                                 <rect key="frame" x="116" y="478" width="97" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -26,71 +33,156 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2HW-Rm-nGB" customClass="BallView">
-                                <rect key="frame" x="150" y="279" width="40" height="40"/>
+                                <rect key="frame" x="140" y="264" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.71433735494187189" green="1" blue="0.93783022657172566" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvP-7U-3AR" customClass="BlockView">
-                                <rect key="frame" x="68" y="107" width="40" height="26"/>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvP-7U-3AR" customClass="BlockView">
+                                <rect key="frame" x="11" y="77" width="40" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dDg-pe-Znm" customClass="BlockView">
-                                <rect key="frame" x="116" y="107" width="40" height="26"/>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dDg-pe-Znm" customClass="BlockView">
+                                <rect key="frame" x="54" y="77" width="40" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="72U-yw-y8q" customClass="BlockView">
-                                <rect key="frame" x="164" y="107" width="40" height="26"/>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="72U-yw-y8q" customClass="BlockView">
+                                <rect key="frame" x="97" y="77" width="40" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Wh-l7-Zof" customClass="BlockView">
-                                <rect key="frame" x="212" y="73" width="40" height="26"/>
+                            <view tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Wh-l7-Zof" customClass="BlockView">
+                                <rect key="frame" x="140" y="48" width="40" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YRq-iA-Pm4" customClass="BlockView">
-                                <rect key="frame" x="164" y="73" width="40" height="26"/>
+                            <view tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YRq-iA-Pm4" customClass="BlockView">
+                                <rect key="frame" x="97" y="48" width="40" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AkX-fR-aS3" customClass="BlockView">
-                                <rect key="frame" x="116" y="73" width="40" height="26"/>
+                            <view tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AkX-fR-aS3" customClass="BlockView">
+                                <rect key="frame" x="54" y="48" width="40" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dAe-PB-5rL" customClass="BlockView">
-                                <rect key="frame" x="68" y="73" width="40" height="26"/>
+                            <view tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dAe-PB-5rL" customClass="BlockView">
+                                <rect key="frame" x="11" y="48" width="40" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J3u-OH-IuP" customClass="BlockView">
-                                <rect key="frame" x="212" y="107" width="40" height="26"/>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J3u-OH-IuP" customClass="BlockView">
+                                <rect key="frame" x="140" y="77" width="40" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap Ball To Start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gX5-nd-RZ0">
-                                <rect key="frame" x="20" y="218" width="280" height="53"/>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xuk-XK-ZCx" customClass="BlockView">
+                                <rect key="frame" x="183" y="77" width="40" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="29"/>
-                                <color key="textColor" red="0.7703683035714286" green="0.7703683035714286" blue="0.7703683035714286" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qhh-mg-tqs" customClass="BlockView">
+                                <rect key="frame" x="226" y="48" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qLu-IS-Yuv" customClass="BlockView">
+                                <rect key="frame" x="183" y="48" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xns-Xq-loP" customClass="BlockView">
+                                <rect key="frame" x="226" y="77" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mdt-Si-mqi" customClass="BlockView">
+                                <rect key="frame" x="269" y="48" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Kc-WX-Yar" customClass="BlockView">
+                                <rect key="frame" x="269" y="77" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nQ3-Xx-qYD" customClass="BlockView">
+                                <rect key="frame" x="11" y="135" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CVH-BO-Msr" customClass="BlockView">
+                                <rect key="frame" x="54" y="135" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iUD-e7-CuV" customClass="BlockView">
+                                <rect key="frame" x="97" y="135" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="slE-84-MM2" customClass="BlockView">
+                                <rect key="frame" x="140" y="106" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eoc-YV-bO8" customClass="BlockView">
+                                <rect key="frame" x="97" y="106" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U9R-xf-QFz" customClass="BlockView">
+                                <rect key="frame" x="54" y="106" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lmf-o4-B5q" customClass="BlockView">
+                                <rect key="frame" x="11" y="106" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wt7-Bu-vdm" customClass="BlockView">
+                                <rect key="frame" x="140" y="135" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvg-ut-QVy" customClass="BlockView">
+                                <rect key="frame" x="183" y="135" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qyc-5P-Njm" customClass="BlockView">
+                                <rect key="frame" x="226" y="106" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UrF-jv-hIe" customClass="BlockView">
+                                <rect key="frame" x="183" y="106" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nfj-mG-bDA" customClass="BlockView">
+                                <rect key="frame" x="226" y="135" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-uR-mNF" customClass="BlockView">
+                                <rect key="frame" x="269" y="106" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ic-7b-95u" customClass="BlockView">
+                                <rect key="frame" x="269" y="135" width="40" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.36278300382653061" green="0.36278300382653061" blue="0.36278300382653061" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="ballView" destination="2HW-Rm-nGB" id="Pzj-Jt-Cey"/>
-                        <outlet property="blockView1" destination="dAe-PB-5rL" id="IWd-Ew-S8o"/>
-                        <outlet property="blockView2" destination="AkX-fR-aS3" id="2N8-B4-YvU"/>
-                        <outlet property="blockView3" destination="YRq-iA-Pm4" id="86o-xG-ETK"/>
-                        <outlet property="blockView4" destination="5Wh-l7-Zof" id="2S4-GG-sRM"/>
-                        <outlet property="blockView5" destination="fvP-7U-3AR" id="w0b-ZG-PJt"/>
-                        <outlet property="blockView6" destination="dDg-pe-Znm" id="Hv8-hr-0uX"/>
-                        <outlet property="blockView7" destination="72U-yw-y8q" id="ezJ-Gy-hKU"/>
-                        <outlet property="blockView8" destination="J3u-OH-IuP" id="buA-6e-6jv"/>
                         <outlet property="instructionsLabel" destination="gX5-nd-RZ0" id="iI5-7B-cqd"/>
                         <outlet property="paddleView" destination="nuy-sG-AM5" id="Ohp-SY-jgZ"/>
                     </connections>

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BlockView : UIView
+@property NSNumber *hitLevel;
 
 @end
