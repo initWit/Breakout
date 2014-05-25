@@ -169,8 +169,6 @@
         randomVectorAmount = -randomVectorAmount;
     }
 
-    NSLog(@"randomVectorAmount is %g",randomVectorAmount);
-
     self.pushBehavior = [[UIPushBehavior alloc]initWithItems:@[self.ballView] mode:UIPushBehaviorModeInstantaneous];
     self.pushBehavior.pushDirection = CGVectorMake(randomVectorAmount,0.5);
     self.pushBehavior.active = YES;
@@ -221,7 +219,6 @@
         [UIView animateWithDuration:0.4 animations:^{
             eachBlockView.alpha = 1.0;
             self.instructionsLabel.alpha = 1.0;
-            self.lastGameScoreLabel.alpha = 1.0;
             [self setRoundedView:self.ballView toDiameter:40.0];
         }];
         [self.collisionBehavior addItem:eachBlockView];
