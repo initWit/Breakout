@@ -16,6 +16,9 @@
 @property (weak, nonatomic) IBOutlet PaddleView *paddleView;
 @property (weak, nonatomic) IBOutlet BallView *ballView;
 @property (strong, nonatomic) IBOutlet UILabel *instructionsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (strong, nonatomic) IBOutlet UILabel *lastGameScoreLabel;
+@property (strong, nonatomic) NSNumber *score;
 @property UIDynamicAnimator *dynamicAnimator;
 @property UIPushBehavior *pushBehavior;
 @property UICollisionBehavior *collisionBehavior;
@@ -46,6 +49,9 @@
         eachBlockView.hitLevel = [NSNumber numberWithInt:eachBlockView.tag];
         if (eachBlockView.tag == 2) {
             eachBlockView.backgroundColor = [UIColor blueColor];
+        }
+        if (eachBlockView.tag == 3) {
+            eachBlockView.backgroundColor = [UIColor redColor];
         }
     }
 
@@ -85,6 +91,8 @@
 
     [self setRoundedView:self.ballView toDiameter:40.0];
 
+    self.scoreLabel.text = @"0";
+    self.lastGameScoreLabel.alpha = 0;
 }
 
 
@@ -97,9 +105,19 @@
             collidedBlock = (BlockView *)item2;
         }
 
+        int currentScore = self.score.intValue;
+        currentScore += collidedBlock.tag;
+        self.score = [NSNumber numberWithInt:currentScore];
+        self.scoreLabel.text = [NSString stringWithFormat:@"%i", currentScore];
+
         collidedBlock.hitLevel = [NSNumber numberWithInt:[collidedBlock.hitLevel intValue]-1];
 
-        if (collidedBlock.hitLevel.intValue == 1) {
+        if (collidedBlock.hitLevel.intValue == 2) {
+            [UIView animateWithDuration:0.6 animations:^{
+                collidedBlock.backgroundColor = [UIColor blueColor];
+            }];
+        }
+        else if (collidedBlock.hitLevel.intValue == 1) {
             [UIView animateWithDuration:0.6 animations:^{
                 collidedBlock.backgroundColor = [UIColor orangeColor];
             }];
@@ -119,16 +137,23 @@
 {
     if (p.y >= 565.0)
     {
-//        [self.collisionBehavior removeItem:self.ballView];
         self.snapBehavior.damping = 0.6;
         [self.dynamicAnimator addBehavior:self.snapBehavior];
         [UIView animateWithDuration:0.2 animations:^{
             self.instructionsLabel.alpha = 1;
+            self.lastGameScoreLabel.alpha = 1;
         }];
         [self setRoundedView:self.ballView toDiameter:40.0];
+        if (self.score.intValue == 0) {
+            self.lastGameScoreLabel.alpha = 0;
+        }
+        self.lastGameScoreLabel.text = [NSString stringWithFormat:@"Your Score: %i", self.score.intValue];
+        self.score = [NSNumber numberWithInt:0];
+        self.scoreLabel.text = [NSString stringWithFormat:@"0"];
     }
 
     [self.dynamicAnimator removeBehavior:self.pushBehavior];
+
 }
 
 - (void) ballViewDidGetTapped:(BallView *)ballView
@@ -136,14 +161,25 @@
 
     [self.dynamicAnimator removeBehavior:self.snapBehavior];
 
+
+    CGFloat randomVectorAmount = arc4random_uniform(100) * 0.01;
+
+    BOOL positiveOrNegative = arc4random_uniform(2);
+    if (positiveOrNegative) {
+        randomVectorAmount = -randomVectorAmount;
+    }
+
+    NSLog(@"randomVectorAmount is %g",randomVectorAmount);
+
     self.pushBehavior = [[UIPushBehavior alloc]initWithItems:@[self.ballView] mode:UIPushBehaviorModeInstantaneous];
-    self.pushBehavior.pushDirection = CGVectorMake(0.1,0.5);
+    self.pushBehavior.pushDirection = CGVectorMake(randomVectorAmount,0.5);
     self.pushBehavior.active = YES;
     self.pushBehavior.magnitude = 0.8;
     [self.dynamicAnimator addBehavior:self.pushBehavior];
 
     [UIView animateWithDuration:0.2 animations:^{
         self.instructionsLabel.alpha = 0;
+        self.lastGameScoreLabel.alpha = 0;
         [self setRoundedView:self.ballView toDiameter:15.0];
     }];
 }
@@ -175,12 +211,17 @@
         eachBlockView.backgroundColor = [UIColor orangeColor];
         if (eachBlockView.tag == 2) {
             eachBlockView.backgroundColor = [UIColor blueColor];
-            eachBlockView.hitLevel = [NSNumber numberWithInt:2];
+            eachBlockView.hitLevel = [NSNumber numberWithInt:eachBlockView.tag];
+        }
+        if (eachBlockView.tag == 3) {
+            eachBlockView.backgroundColor = [UIColor redColor];
+            eachBlockView.hitLevel = [NSNumber numberWithInt:eachBlockView.tag];
         }
         [self.view addSubview:eachBlockView];
         [UIView animateWithDuration:0.4 animations:^{
             eachBlockView.alpha = 1.0;
             self.instructionsLabel.alpha = 1.0;
+            self.lastGameScoreLabel.alpha = 1.0;
             [self setRoundedView:self.ballView toDiameter:40.0];
         }];
         [self.collisionBehavior addItem:eachBlockView];
@@ -204,6 +245,10 @@
     roundedView.frame = newFrame;
     roundedView.layer.cornerRadius = newSize / 2.0;
     roundedView.center = saveCenter;
+}
+
+- (BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 @end
