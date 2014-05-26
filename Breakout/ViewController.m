@@ -162,7 +162,6 @@ SystemSoundID beepCoinSound;
             }
         }
 
-
         collidedBlock.hitLevel = [NSNumber numberWithInt:[collidedBlock.hitLevel intValue]-1];
 
         if (collidedBlock.hitLevel.intValue == 2)
@@ -378,7 +377,7 @@ SystemSoundID beepCoinSound;
     [self.collisionBehavior addItem:self.paddleView];
     [self.dynamicAnimator removeBehavior:self.snapBehavior];
     CGFloat randomVectorAmount = (arc4random_uniform(100) * 0.01)+0.1;
-    CGFloat randomVectorAmountForY = (arc4random_uniform(100) * 0.01)-0.1;
+    CGFloat randomVectorAmountForY = (arc4random_uniform(70) * 0.01)+0.3;
     BOOL positiveOrNegative = arc4random_uniform(2);
     if (positiveOrNegative) {
         randomVectorAmount = -randomVectorAmount;

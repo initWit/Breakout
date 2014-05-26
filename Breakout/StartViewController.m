@@ -62,8 +62,6 @@
     [self.dynamicAnimator addBehavior:self.titleDynamicBehavior];
 
     [self setRoundedView:self.ballViewTitle toDiameter:25.0];
-
-
 }
 
 - (void)viewDidAppear:(BOOL)animated{
