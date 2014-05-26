@@ -11,6 +11,8 @@
 #import "BallView.h"
 #import "BlockView.h"
 #import <QuartzCore/QuartzCore.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface ViewController () <UICollisionBehaviorDelegate, BallViewDelegate>
 @property (weak, nonatomic) IBOutlet PaddleView *paddleView;
@@ -32,12 +34,16 @@
 @property NSNumber *playerOneScore;
 @property NSNumber *playerTwoScore;
 @property BOOL isPlayerOnePlaying;
-
+@property (strong, nonatomic) AVAudioPlayer* avPlayer;
+@property (strong, nonatomic) NSURL* beepSoundURL;
+@property (strong, nonatomic) AVAudioPlayer* avPlayerBg;
+@property (strong, nonatomic) NSURL* backgroundMusicURL;
 
 @end
 
 @implementation ViewController
 
+SystemSoundID beepCoinSound;
 
 - (void)viewDidLoad
 {
@@ -114,6 +120,28 @@
         }
 
     [self.backButton setHidden:YES];
+
+//    self.beepSoundURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beepCoin" ofType:@"mp3"]];
+//    self.avPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:self.beepSoundURL error:nil];
+//    [self.avPlayer prepareToPlay];
+//    self.avPlayer.volume = 0.7;
+
+    NSString *beepCoinPath = [[NSBundle mainBundle] pathForResource:@"beepCoin" ofType:@"caf"];
+    NSURL *beepCoinURL = [NSURL fileURLWithPath:beepCoinPath];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)beepCoinURL, &beepCoinSound);
+
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+
+    self.backgroundMusicURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Spy Trance" ofType:@"m4a"]];
+    self.avPlayerBg = [[AVAudioPlayer alloc] initWithContentsOfURL:self.backgroundMusicURL error:nil];
+    [self.avPlayerBg prepareToPlay];
+    self.avPlayerBg.volume = 0.4;
+    self.avPlayerBg.numberOfLoops = -1;
+    [self.avPlayerBg play];
+
 }
 
 
@@ -167,6 +195,11 @@
             [self performSelector:@selector(removeBlockFromSuperView:) withObject:collidedBlock afterDelay:0.6];
         }
     }
+
+//    [self.avPlayer play];
+    AudioServicesPlaySystemSound(beepCoinSound);
+
+
 }
 
 
@@ -227,6 +260,9 @@
     }
 
     [self.dynamicAnimator removeBehavior:self.pushBehavior];
+
+//    [self.avPlayer play];
+    AudioServicesPlaySystemSound(beepCoinSound);
 
 }
 
@@ -405,6 +441,7 @@
 
 - (IBAction)returnToMenuButtonPressed:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+    [self.avPlayerBg stop];
 }
 
 @end

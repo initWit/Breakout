@@ -25,6 +25,11 @@
 		58738C36192E791600D0B4AE /* PaddleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58738C35192E791600D0B4AE /* PaddleView.m */; };
 		58738C39192E7AA200D0B4AE /* BallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58738C38192E7AA200D0B4AE /* BallView.m */; };
 		665FE9EC1932F5860067748A /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665FE9EB1932F5860067748A /* StartViewController.m */; };
+		66949DCF193311CB00B83B2D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66949DCE193311CB00B83B2D /* AudioToolbox.framework */; };
+		66949DD1193311D000B83B2D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66949DD0193311D000B83B2D /* AVFoundation.framework */; };
+		66949DE21933192400B83B2D /* Spy Trance.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 66949DE11933192400B83B2D /* Spy Trance.m4a */; };
+		66949DE419331AC600B83B2D /* beepCoin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 66949DE319331AC600B83B2D /* beepCoin.mp3 */; };
+		66949DE619331E7100B83B2D /* beepCoin.caf in Resources */ = {isa = PBXBuildFile; fileRef = 66949DE519331E7100B83B2D /* beepCoin.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +70,11 @@
 		58738C38192E7AA200D0B4AE /* BallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallView.m; sourceTree = "<group>"; };
 		665FE9EA1932F5860067748A /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		665FE9EB1932F5860067748A /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
+		66949DCE193311CB00B83B2D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		66949DD0193311D000B83B2D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		66949DE11933192400B83B2D /* Spy Trance.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Spy Trance.m4a"; sourceTree = "<group>"; };
+		66949DE319331AC600B83B2D /* beepCoin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beepCoin.mp3; sourceTree = "<group>"; };
+		66949DE519331E7100B83B2D /* beepCoin.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beepCoin.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66949DD1193311D000B83B2D /* AVFoundation.framework in Frameworks */,
+				66949DCF193311CB00B83B2D /* AudioToolbox.framework in Frameworks */,
 				58738C00192E77C700D0B4AE /* CoreGraphics.framework in Frameworks */,
 				58738C02192E77C700D0B4AE /* UIKit.framework in Frameworks */,
 				58738BFE192E77C700D0B4AE /* Foundation.framework in Frameworks */,
@@ -113,6 +125,8 @@
 		58738BFC192E77C700D0B4AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66949DD0193311D000B83B2D /* AVFoundation.framework */,
+				66949DCE193311CB00B83B2D /* AudioToolbox.framework */,
 				58738BFD192E77C700D0B4AE /* Foundation.framework */,
 				58738BFF192E77C700D0B4AE /* CoreGraphics.framework */,
 				58738C01192E77C700D0B4AE /* UIKit.framework */,
@@ -146,6 +160,9 @@
 		58738C04192E77C700D0B4AE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				66949DE519331E7100B83B2D /* beepCoin.caf */,
+				66949DE11933192400B83B2D /* Spy Trance.m4a */,
+				66949DE319331AC600B83B2D /* beepCoin.mp3 */,
 				58738C05192E77C700D0B4AE /* Breakout-Info.plist */,
 				58738C06192E77C700D0B4AE /* InfoPlist.strings */,
 				58738C09192E77C700D0B4AE /* main.m */,
@@ -248,9 +265,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66949DE419331AC600B83B2D /* beepCoin.mp3 in Resources */,
+				66949DE619331E7100B83B2D /* beepCoin.caf in Resources */,
 				58738C16192E77C700D0B4AE /* Images.xcassets in Resources */,
 				58738C08192E77C700D0B4AE /* InfoPlist.strings in Resources */,
 				58738C11192E77C700D0B4AE /* Main.storyboard in Resources */,
+				66949DE21933192400B83B2D /* Spy Trance.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

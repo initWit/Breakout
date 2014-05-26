@@ -10,6 +10,8 @@
 #import "ViewController.h"
 #import "BallView.h"
 #import <QuartzCore/QuartzCore.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
 
 @interface StartViewController () <UICollisionBehaviorDelegate>
@@ -22,7 +24,7 @@
 @property UICollisionBehavior *collisionBehavior;
 @property UIDynamicItemBehavior *ballDynamicBehavior;
 @property UIDynamicItemBehavior *titleDynamicBehavior;
-
+@property (strong, nonatomic) AVAudioPlayer* avPlayer;
 
 @end
 
@@ -38,7 +40,7 @@
     self.pushBehavior = [[UIPushBehavior alloc]initWithItems:@[self.ballViewTitle] mode:UIPushBehaviorModeInstantaneous];
     self.pushBehavior.pushDirection = CGVectorMake(0.5,0.5);
     self.pushBehavior.active = YES;
-    self.pushBehavior.magnitude = 0.75;
+    self.pushBehavior.magnitude = 0.8;
     [self.dynamicAnimator addBehavior:self.pushBehavior];
 
     self.collisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.titleLable, self.ballViewTitle]];
@@ -61,6 +63,18 @@
 
     [self setRoundedView:self.ballViewTitle toDiameter:25.0];
 
+
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+
+    NSURL* musicFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Spy Trance" ofType:@"m4a"]];
+    self.avPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:musicFile error:nil];
+    [self.avPlayer prepareToPlay];
+    self.avPlayer.volume = 0.7;
+    self.avPlayer.numberOfLoops = -1;
+    [self.avPlayer play];
 }
 
 -(void)setRoundedView:(UIView *)roundedView toDiameter:(float)newSize;
@@ -74,6 +88,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    [self.avPlayer stop];
     if ([segue.identifier isEqualToString:@"twoPlayerModeSegue"]) {
         ViewController *nextVC = segue.destinationViewController;
         nextVC.isTwoPlayerMode = YES;
@@ -112,10 +127,6 @@
         }];
         self.ballViewTitle.backgroundColor = [UIColor orangeColor];
     }
-
-
-
-
 }
 
 @end
