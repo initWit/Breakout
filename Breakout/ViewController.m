@@ -17,8 +17,10 @@
 @property (weak, nonatomic) IBOutlet BallView *ballView;
 @property (strong, nonatomic) IBOutlet UILabel *instructionsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (strong, nonatomic) IBOutlet UILabel *lastGameScoreLabel;
 @property (strong, nonatomic) NSNumber *score;
+@property (strong, nonatomic) IBOutlet UILabel *playerOneScoreLabel;
+@property (strong, nonatomic) IBOutlet UILabel *playerTwoScoreLabel;
+@property (strong, nonatomic) IBOutlet UIButton *backButton;
 @property UIDynamicAnimator *dynamicAnimator;
 @property UIPushBehavior *pushBehavior;
 @property UICollisionBehavior *collisionBehavior;
@@ -27,9 +29,15 @@
 @property UISnapBehavior *snapBehavior;
 @property NSMutableArray *arrayOfBlocks;
 @property CAEmitterLayer *myEmitter;
+@property NSNumber *playerOneScore;
+@property NSNumber *playerTwoScore;
+@property BOOL isPlayerOnePlaying;
+
+
 @end
 
 @implementation ViewController
+
 
 - (void)viewDidLoad
 {
@@ -48,7 +56,7 @@
     for (BlockView* eachBlockView in self.arrayOfBlocks) {
         eachBlockView.hitLevel = [NSNumber numberWithInt:eachBlockView.tag];
         if (eachBlockView.tag == 2) {
-            eachBlockView.backgroundColor = [UIColor blueColor];
+            eachBlockView.backgroundColor = [UIColor orangeColor];
         }
         if (eachBlockView.tag == 3) {
             eachBlockView.backgroundColor = [UIColor redColor];
@@ -60,7 +68,7 @@
     self.pushBehavior = [[UIPushBehavior alloc]initWithItems:@[self.ballView] mode:UIPushBehaviorModeInstantaneous];
     self.pushBehavior.pushDirection = CGVectorMake(0.5,0.5);
     self.pushBehavior.active = YES;
-    self.pushBehavior.magnitude = 0.8;
+    self.pushBehavior.magnitude = 0.75;
 
     self.collisionBehavior = [[UICollisionBehavior alloc] initWithItems:self.arrayOfBlocks];
     [self.collisionBehavior addItem:self.paddleView];
@@ -92,7 +100,20 @@
     [self setRoundedView:self.ballView toDiameter:40.0];
 
     self.scoreLabel.text = @"0";
-    self.lastGameScoreLabel.alpha = 0;
+
+    if (self.isTwoPlayerMode) {
+        self.playerOneScore = [NSNumber numberWithInt:0];
+        self.playerTwoScore = [NSNumber numberWithInt:0];
+        self.instructionsLabel.text = @"Player One - Tap Ball to Start";
+        self.scoreLabel.text = @"";
+        self.isPlayerOnePlaying = YES;
+    }
+    else{
+        [self.playerOneScoreLabel setHidden:YES];
+        [self.playerTwoScoreLabel setHidden:YES];
+        }
+
+    [self.backButton setHidden:YES];
 }
 
 
@@ -105,21 +126,37 @@
             collidedBlock = (BlockView *)item2;
         }
 
-        int currentScore = self.score.intValue;
-        currentScore += collidedBlock.tag;
-        self.score = [NSNumber numberWithInt:currentScore];
-        self.scoreLabel.text = [NSString stringWithFormat:@"%i", currentScore];
+        if (!self.isTwoPlayerMode) {
+            int currentScore = self.score.intValue;
+            currentScore += collidedBlock.tag;
+            self.score = [NSNumber numberWithInt:currentScore];
+            self.scoreLabel.text = [NSString stringWithFormat:@"%i", currentScore];
+        }else{
+            if (self.isPlayerOnePlaying) {
+                int currentScore = self.playerOneScore.intValue;
+                currentScore += collidedBlock.tag;
+                self.playerOneScore = [NSNumber numberWithInt:currentScore];
+                self.playerOneScoreLabel.text = [NSString stringWithFormat:@"Player One: %i", currentScore];
+            }
+            else{
+                int currentScore = self.playerTwoScore.intValue;
+                currentScore += collidedBlock.tag;
+                self.playerTwoScore = [NSNumber numberWithInt:currentScore];
+                self.playerTwoScoreLabel.text = [NSString stringWithFormat:@"Player Two: %i", currentScore];
+            }
+        }
+
 
         collidedBlock.hitLevel = [NSNumber numberWithInt:[collidedBlock.hitLevel intValue]-1];
 
         if (collidedBlock.hitLevel.intValue == 2) {
             [UIView animateWithDuration:0.6 animations:^{
-                collidedBlock.backgroundColor = [UIColor blueColor];
+                collidedBlock.backgroundColor = [UIColor orangeColor];
             }];
         }
         else if (collidedBlock.hitLevel.intValue == 1) {
             [UIView animateWithDuration:0.6 animations:^{
-                collidedBlock.backgroundColor = [UIColor orangeColor];
+                collidedBlock.backgroundColor = [UIColor yellowColor];
             }];
         }
         else {
@@ -137,19 +174,56 @@
 {
     if (p.y >= 565.0)
     {
-        self.snapBehavior.damping = 0.6;
-        [self.dynamicAnimator addBehavior:self.snapBehavior];
-        [UIView animateWithDuration:0.2 animations:^{
-            self.instructionsLabel.alpha = 1;
-            self.lastGameScoreLabel.alpha = 1;
-        }];
-        [self setRoundedView:self.ballView toDiameter:40.0];
-        if (self.score.intValue == 0) {
-            self.lastGameScoreLabel.alpha = 0;
+        if (!self.isTwoPlayerMode) {
+            self.scoreLabel.text = [NSString stringWithFormat:@"Your Score: %i", self.score.intValue];
+            [self.collisionBehavior removeItem:self.paddleView];
+            self.snapBehavior.damping = 0.6;
+            [self.dynamicAnimator addBehavior:self.snapBehavior];
+            [UIView animateWithDuration:0.2 animations:^{
+                self.instructionsLabel.alpha = 1;
+            }];
+            [self setRoundedView:self.ballView toDiameter:40.0];
+            self.score = [NSNumber numberWithInt:0];
+            [self.backButton setHidden:NO];
+            [self reset];
         }
-        self.lastGameScoreLabel.text = [NSString stringWithFormat:@"Your Score: %i", self.score.intValue];
-        self.score = [NSNumber numberWithInt:0];
-        self.scoreLabel.text = [NSString stringWithFormat:@"0"];
+        else{
+            if (self.isPlayerOnePlaying) {
+                self.playerOneScoreLabel.text = [NSString stringWithFormat:@"Player One: %i", self.playerOneScore.intValue];
+                [self.collisionBehavior removeItem:self.paddleView];
+                self.snapBehavior.damping = 0.6;
+                [self.dynamicAnimator addBehavior:self.snapBehavior];
+                [UIView animateWithDuration:0.2 animations:^{
+                    self.instructionsLabel.alpha = 1;
+                }];
+                [self setRoundedView:self.ballView toDiameter:40.0];
+                self.isPlayerOnePlaying = NO;
+                [self reset];
+            }
+            else{
+                self.playerTwoScoreLabel.text = [NSString stringWithFormat:@"Player Two: %i", self.playerTwoScore.intValue];
+                [self.collisionBehavior removeItem:self.paddleView];
+                self.snapBehavior.damping = 0.6;
+                [self.dynamicAnimator addBehavior:self.snapBehavior];
+                [UIView animateWithDuration:0.2 animations:^{
+                    self.instructionsLabel.alpha = 1;
+                }];
+                [self setRoundedView:self.ballView toDiameter:40.0];
+//                [self reset];
+
+                if (self.playerOneScore.intValue > self.playerTwoScore.intValue) {
+                    self.instructionsLabel.text = @"Player One WINS!";
+                }
+                if (self.playerTwoScore.intValue > self.playerOneScore.intValue) {
+                    self.instructionsLabel.text = @"Player Two WINS!";
+                }
+                if (self.playerOneScore.intValue == self.playerTwoScore.intValue) {
+                    self.instructionsLabel.text = @"It's a TIE";
+                }
+
+                [self.backButton setHidden:NO];
+            }
+        }
     }
 
     [self.dynamicAnimator removeBehavior:self.pushBehavior];
@@ -158,28 +232,73 @@
 
 - (void) ballViewDidGetTapped:(BallView *)ballView
 {
-
-    [self.dynamicAnimator removeBehavior:self.snapBehavior];
-
-
-    CGFloat randomVectorAmount = arc4random_uniform(100) * 0.01;
-
-    BOOL positiveOrNegative = arc4random_uniform(2);
-    if (positiveOrNegative) {
-        randomVectorAmount = -randomVectorAmount;
+    if (!self.isTwoPlayerMode) {
+        [self.collisionBehavior addItem:self.paddleView];
+        [self.dynamicAnimator removeBehavior:self.snapBehavior];
+        CGFloat randomVectorAmount = arc4random_uniform(100) * 0.01;
+        BOOL positiveOrNegative = arc4random_uniform(2);
+        if (positiveOrNegative) {
+            randomVectorAmount = -randomVectorAmount;
+        }
+        self.pushBehavior = [[UIPushBehavior alloc]initWithItems:@[self.ballView] mode:UIPushBehaviorModeInstantaneous];
+        self.pushBehavior.pushDirection = CGVectorMake(randomVectorAmount,0.5);
+        self.pushBehavior.active = YES;
+        self.pushBehavior.magnitude = 0.8;
+        [self.dynamicAnimator addBehavior:self.pushBehavior];
+        [UIView animateWithDuration:0.2 animations:^{
+            self.instructionsLabel.alpha = 0;
+            [self setRoundedView:self.ballView toDiameter:15.0];
+        }];
+        if (self.score == [NSNumber numberWithInt:0]) {
+            self.scoreLabel.text = @"0";
+        }
+        [self.backButton setHidden:YES];
     }
 
-    self.pushBehavior = [[UIPushBehavior alloc]initWithItems:@[self.ballView] mode:UIPushBehaviorModeInstantaneous];
-    self.pushBehavior.pushDirection = CGVectorMake(randomVectorAmount,0.5);
-    self.pushBehavior.active = YES;
-    self.pushBehavior.magnitude = 0.8;
-    [self.dynamicAnimator addBehavior:self.pushBehavior];
+    if (self.isTwoPlayerMode && self.isPlayerOnePlaying) {
+        [self.collisionBehavior addItem:self.paddleView];
+        [self.dynamicAnimator removeBehavior:self.snapBehavior];
+        CGFloat randomVectorAmount = arc4random_uniform(100) * 0.01;
+        BOOL positiveOrNegative = arc4random_uniform(2);
+        if (positiveOrNegative) {
+            randomVectorAmount = -randomVectorAmount;
+        }
+        self.pushBehavior = [[UIPushBehavior alloc]initWithItems:@[self.ballView] mode:UIPushBehaviorModeInstantaneous];
+        self.pushBehavior.pushDirection = CGVectorMake(randomVectorAmount,0.5);
+        self.pushBehavior.active = YES;
+        self.pushBehavior.magnitude = 0.8;
+        [self.dynamicAnimator addBehavior:self.pushBehavior];
+        [UIView animateWithDuration:0.2 animations:^{
+            self.instructionsLabel.alpha = 0;
+            [self setRoundedView:self.ballView toDiameter:15.0];
+        }];
+        if (self.score == [NSNumber numberWithInt:0]) {
+            self.scoreLabel.text = @"0";
+        }
+        [self.backButton setHidden:YES];
+    } else if (self.isTwoPlayerMode && !self.isPlayerOnePlaying && [self.playerTwoScoreLabel.text isEqualToString:@"Player Two"]){
 
-    [UIView animateWithDuration:0.2 animations:^{
-        self.instructionsLabel.alpha = 0;
-        self.lastGameScoreLabel.alpha = 0;
-        [self setRoundedView:self.ballView toDiameter:15.0];
-    }];
+        [self.collisionBehavior addItem:self.paddleView];
+        [self.dynamicAnimator removeBehavior:self.snapBehavior];
+        CGFloat randomVectorAmount = arc4random_uniform(100) * 0.01;
+        BOOL positiveOrNegative = arc4random_uniform(2);
+        if (positiveOrNegative) {
+            randomVectorAmount = -randomVectorAmount;
+        }
+        self.pushBehavior = [[UIPushBehavior alloc]initWithItems:@[self.ballView] mode:UIPushBehaviorModeInstantaneous];
+        self.pushBehavior.pushDirection = CGVectorMake(randomVectorAmount,0.5);
+        self.pushBehavior.active = YES;
+        self.pushBehavior.magnitude = 0.8;
+        [self.dynamicAnimator addBehavior:self.pushBehavior];
+        [UIView animateWithDuration:0.2 animations:^{
+            self.instructionsLabel.alpha = 0;
+            [self setRoundedView:self.ballView toDiameter:15.0];
+        }];
+        if (self.score == [NSNumber numberWithInt:0]) {
+            self.scoreLabel.text = @"0";
+        }
+        [self.backButton setHidden:YES];
+    }
 }
 
 - (BOOL)shouldStartAgain
@@ -206,9 +325,9 @@
 - (void)reset
 {
     for (BlockView *eachBlockView in self.arrayOfBlocks) {
-        eachBlockView.backgroundColor = [UIColor orangeColor];
+        eachBlockView.backgroundColor = [UIColor yellowColor];
         if (eachBlockView.tag == 2) {
-            eachBlockView.backgroundColor = [UIColor blueColor];
+            eachBlockView.backgroundColor = [UIColor orangeColor];
             eachBlockView.hitLevel = [NSNumber numberWithInt:eachBlockView.tag];
         }
         if (eachBlockView.tag == 3) {
@@ -216,13 +335,49 @@
             eachBlockView.hitLevel = [NSNumber numberWithInt:eachBlockView.tag];
         }
         [self.view addSubview:eachBlockView];
+
         [UIView animateWithDuration:0.4 animations:^{
             eachBlockView.alpha = 1.0;
             self.instructionsLabel.alpha = 1.0;
             [self setRoundedView:self.ballView toDiameter:40.0];
         }];
+
         [self.collisionBehavior addItem:eachBlockView];
+
     }
+
+    [self.instructionsLabel sizeToFit];
+
+    if (!self.isTwoPlayerMode)
+    {
+        self.instructionsLabel.text = @"Tap Ball to Continue";
+        if (self.score == [NSNumber numberWithInt:0])
+        {
+            self.instructionsLabel.text = @"Tap Ball to Start New Game";
+        }
+    }
+    else
+    {
+        if (self.isPlayerOnePlaying)
+        {
+            self.instructionsLabel.text = @"Player One - Tap Ball to Continue";
+            if (self.playerOneScore == [NSNumber numberWithInt:0])
+            {
+                self.instructionsLabel.text = @"Player One - Tap Ball to Start";
+            }
+        }
+        else
+        {
+            self.instructionsLabel.text = @"Player Two - Tap Ball to Continue";
+            if (self.playerTwoScore == [NSNumber numberWithInt:0])
+            {
+                self.instructionsLabel.text = @"Player Two - Tap Ball to Start";
+            }
+            self.view.backgroundColor = [UIColor grayColor];
+        }
+    }
+
+
 }
 
 -(void)removeBlockFromSuperView:(BlockView *)collidedBlock{
@@ -246,6 +401,10 @@
 
 - (BOOL)prefersStatusBarHidden{
     return YES;
+}
+
+- (IBAction)returnToMenuButtonPressed:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

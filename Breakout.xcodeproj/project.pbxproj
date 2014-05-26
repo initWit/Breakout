@@ -24,6 +24,7 @@
 		58738C29192E77C700D0B4AE /* BreakoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58738C28192E77C700D0B4AE /* BreakoutTests.m */; };
 		58738C36192E791600D0B4AE /* PaddleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58738C35192E791600D0B4AE /* PaddleView.m */; };
 		58738C39192E7AA200D0B4AE /* BallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58738C38192E7AA200D0B4AE /* BallView.m */; };
+		665FE9EC1932F5860067748A /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665FE9EB1932F5860067748A /* StartViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		58738C35192E791600D0B4AE /* PaddleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddleView.m; sourceTree = "<group>"; };
 		58738C37192E7AA200D0B4AE /* BallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallView.h; sourceTree = "<group>"; };
 		58738C38192E7AA200D0B4AE /* BallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallView.m; sourceTree = "<group>"; };
+		665FE9EA1932F5860067748A /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
+		665FE9EB1932F5860067748A /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 				58738C0C192E77C700D0B4AE /* AppDelegate.h */,
 				58738C0D192E77C700D0B4AE /* AppDelegate.m */,
 				58738C0F192E77C700D0B4AE /* Main.storyboard */,
+				665FE9EA1932F5860067748A /* StartViewController.h */,
+				665FE9EB1932F5860067748A /* StartViewController.m */,
 				58738C37192E7AA200D0B4AE /* BallView.h */,
 				58738C38192E7AA200D0B4AE /* BallView.m */,
 				582DAC2B192E8BDF005EFD8D /* BlockView.h */,
@@ -267,6 +272,7 @@
 				582DAC2D192E8BDF005EFD8D /* BlockView.m in Sources */,
 				58738C36192E791600D0B4AE /* PaddleView.m in Sources */,
 				58738C14192E77C700D0B4AE /* ViewController.m in Sources */,
+				665FE9EC1932F5860067748A /* StartViewController.m in Sources */,
 				58738C39192E7AA200D0B4AE /* BallView.m in Sources */,
 				58738C0E192E77C700D0B4AE /* AppDelegate.m in Sources */,
 				58738C0A192E77C700D0B4AE /* main.m in Sources */,
